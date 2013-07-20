@@ -49,7 +49,6 @@
 
       <section id="main_content">
         <h3>Interiors design by Ettore Sottsass and Shiro Kuramata recreated with PLaSM modeling language.</h3>
-        <a href="plasm.js/quadrifoglio.html">vai qui</a>
 		<p>In this page will be shown some works by design artists Ettore Sottsass and Shiro Kuramata, master designers of the 20th century. These objects are recreated in 3D modeling thanks to the use of PLaSM language.</p>
 
 		<h3>Ettore Sottsass:</h3>
@@ -61,7 +60,7 @@
 		<ul>
 			<li><a href="#s-k-bio">Short bio</a></li>
 			<li><a href="#sofa-with-arms">Sofa with Arms</a></li>
-			<li><a href="#wave-drawer">Furniture in irregular forms</a></li>
+			<li><a href="#wave-drawer">Furniture in Irregular Forms</a></li>
 		</ul>
 
 
@@ -115,6 +114,12 @@
 		<h4>Description:</h4>
 		<p>Only thirty-seven examples of the Max shelf have been produced since 1987. Unit features one drop-front bar and two drawers. Signed with applied manufacturer's label to interior: [Memphis Milano Ettore Sottsass 1987 Made In Italy].
 
+		<h4>Sources:</h4>
+		<ul>
+			<li><a href="">JavaScript code</a></li>
+			<li><a href="plasm.js/maxShelf.html">Interactive 3D render</a></li>
+		</ul>
+
 		<h4>Decomposition:</h4>
 		The 3D recostruction of the Max Shelf is composed by:
 		<ul>
@@ -128,7 +133,13 @@
 		<h4>Description of the recostruction:</h4>
 
 		<p>The most complex part of the Max Shelf was its main body: the shelves themselves. For drawing them the object was divided in different tiers, each one
-		created using the SIMPLEX_GRID native function of PLASM.</p>
+		created using the SIMPLEX_GRID native function of PLaSM. Two 2D sections were also created to give the black color on the front and the back of the shelf:</p>
+		<img src="images/renders/main_body.jpg">
+		<p>The next part was the drawers and the columns. For the latter, the trasparency paramether of the COLOR function came handy to give the impression of glass material.</p>
+		<img src="images/renders/upper_part.jpg">		
+		<p>The base is formed by a collection of triangular blocks of many colors. To recreate it, I used a simplicial complex for the blocks of each color, and then merged them together:</p>
+		<img src="images/renders/shelf_base.jpg">
+		<p>The final piece is visible in the following gallery.</p>
 
 		<h3>Renderings gallery:</h3>
 		<div id="myCarousel2" class="carousel slide">
@@ -148,7 +159,7 @@
 			<a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a>
 		</div>
 
-
+		<br><br>
 		<h1>Shiro Kuramata</a></h1>
 		<img src="images/shiro_kuramata.jpg">
 
@@ -157,6 +168,7 @@
 
 		In 1990 the French government awarded Kuramata the distinguished Ordre des Arts et des Lettres in recognition of his outstanding contribution to art and design.</p>
 
+		<br><br>
 		<h2><a name="sofa-with-arms" href="#sofa-with-arms">Sofa with Arms:</a></h2>
 		<div id="myCarousel1" class="carousel slide">
 			<ol class="carousel-indicators">
@@ -188,6 +200,13 @@
 
 		<p>Small armchair with structure in chromed metal tube. Seat and back padded with multi-density polyurethane foam. Fixed cover in fabrics and leathers of the collection.</p>
 
+		<h4>Sources:</h4>
+		<ul>
+			<li><a href="">JavaScript code</a></li>
+			<li><a href="plasm.js/sofaWithArms.html">Interactive 3D render</a></li>
+		</ul>
+
+
 		<h4>Decomposition:</h4>
 		<p>The 3D recostruction of the Sofa with Arms is composed by:</p>
 		<ul>
@@ -200,8 +219,8 @@
 		<p>I started the recostruction with the chassis, using a custom Torus function to draw the curved parts.</p>
 		<p>Having noticed the sofa's simmetry, I modeled only a half of the chassis, and then used the "mirror scale" function of PLaSM to obtain the whole skeleton:</p>
 
-		<p><img src="images/renders/half.jpg"></p>
-		<p><img src="images/renders/chassis.jpg"></p>
+		<img src="images/renders/half.jpg">
+		<img src="images/renders/chassis.jpg">
 
 		<p>Then I added the back and the seat: for the first I used the cilinder and two rotational surfaces for its edges. With the second I realized a collection of Bezier curves in order to give the most sensation of "softness" possible.</p>
 		<p>In this case the simmetry has not been accounted in order to preserve a sense of continuity on the surface of the cushions.</p>
@@ -254,6 +273,13 @@
 			<li>SIZE:  		17.75"w x 22.5"d x 67"h / 20"w X 19.75"d X 67"h</li>
 		</ul>
 
+		<h4>Sources:</h4>
+		<ul>
+			<li><a href="">JavaScript code</a></li>
+			<li><a href="plasm.js/furniture_IF.html">Interactive 3D render</a></li>
+		</ul>
+
+
 		<h4>Decomposition:</h4>
 		<p>The 3D recostruction of the Sofa with Arms is composed by:</p>
 		<ul>
@@ -265,7 +291,7 @@
 
 		<h4>Description of the reconstruction:</h4>
 
-		<p>When I approached this model, I noticed its ondular structure is the same of a SIN function, properly adjusted for the construction.</p>
+		<p>Upon seeing this furniture, I noticed its peculiar ondular structure, very similar to the SIN function, properly adjusted for the construction.</p>
 		<p>So I created a parametrical function that, given the number of total points and a proportion degree, returns the points aligned on the SIN function from 0 to 2π.</p>
 		<pre><code>var generate_sin_points = function (total, degree) {
   var a = [];
@@ -277,17 +303,33 @@
 		
 		<p>With these points, now I can draw four curves to create the model's corners using the NUBS function of PLaSM.</p>
 		<p>Then using the curves I formed the four sides:</p>
-		<p><img src="images/renders/drawer1.jpg"></p>
+		<img src="images/renders/drawer1.jpg">
 		<p>The drawers were quite a problem, because there was no way to show each one of them distinctly. So I decided to draw "fake" drawers, using a blank front and adding lines to delimitate each drawer from the others.</p>
 		<p>The sin_points function was again useful for positioning each line on the right latitude and longitude. In fact, the function's "total" parameter represents the number of lines needed to create the fake drawers.</p>
 		<p>That's the result:</p>
-		<p><img src="images/renders/drawer2.jpg"></p>
-
-
-
-
-
-
+		<img src="images/renders/drawer2.jpg">
+		<p>The next step was about the pulls and the wheels, both simple cylinders. With some small tweakings and repositioning they were all placed to create the final model:</p>
+		<img src="images/renders/drawer3.jpg">
+		<br><br>
+		<p>The same approach was used to create the second drawer, obviously adjusting the coordinates to respect the different ondular orientation.
+		<br><br>
+		<h4>Renderings gallery:</h4>
+		<div id="carouselRenderWave" class="carousel slide">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselRenderWave" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselRenderWave" data-slide-to="1"></li>
+				<li data-target="#carouselRenderWave" data-slide-to="2"></li>
+			</ol>
+			<!-- Carousel items -->
+			<div class="carousel-inner">
+				<div class="active item"><img src="images/renders/wave1.jpg"></div>
+				<div class="item"><img src="images/renders/wave2.jpg"></div>
+				<div class="item"><img src="images/renders/wave3.jpg"></div>
+			</div>
+			<!-- Carousel nav -->
+			<a class="carousel-control left" href="#carouselRenderWave" data-slide="prev">&lsaquo;</a>
+			<a class="carousel-control right" href="#carouselRenderWave" data-slide="next">&rsaquo;</a>
+		</div>
       </section>
 
       <footer>
